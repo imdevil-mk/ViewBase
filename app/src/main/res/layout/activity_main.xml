@@ -12,9 +12,20 @@
         android:id="@+id/btn"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="60dp"
         android:text="Hello World!"
        />
+
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="改变布局参数"/>
+
+    <com.imdevil.viewbase.MyView
+        android:id="@+id/myView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

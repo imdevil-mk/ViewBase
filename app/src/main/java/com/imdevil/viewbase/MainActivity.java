@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,11 +15,15 @@ public class MainActivity extends AppCompatActivity {
     private final static  String TAG = "Main Activity";
     Button btn;
     LinearLayout ll;
+    Button btn_1;
+    MyView myView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn = findViewById(R.id.btn);
+        btn_1 = findViewById(R.id.btn_1);
+        myView = findViewById(R.id.myView);
         ll = findViewById(R.id.ll);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -31,13 +36,20 @@ public class MainActivity extends AppCompatActivity {
                 ll.scrollTo(90,90);
             }
         });
+        btn_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) btn_1.getLayoutParams();
+                layoutParams.leftMargin += 100;
+                layoutParams.topMargin += 100;
+                btn_1.requestLayout();
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-
         new Thread(new Runnable() {
             @Override
             public void run() {
