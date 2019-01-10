@@ -2,6 +2,7 @@ package com.imdevil.viewbase;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,8 +20,10 @@ public class SecondActivity extends AppCompatActivity {
         scrollBy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myView.scrollBy(-20,-20);
+                myView.smoothScrollTo(-100,-100);
             }
         });
+
+
     }
 }
