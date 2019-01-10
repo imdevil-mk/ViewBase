@@ -1,5 +1,6 @@
 package com.imdevil.viewbase;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,24 +18,36 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     LinearLayout ll;
     Button btn_1;
-    MyView myView;
+    boolean flag = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn = findViewById(R.id.btn);
         btn_1 = findViewById(R.id.btn_1);
-        myView = findViewById(R.id.myView);
         ll = findViewById(R.id.ll);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         Log.d(TAG,"heightPixels = "+displayMetrics.heightPixels);
         Log.d(TAG,"widthPixels = "+displayMetrics.widthPixels);
         Log.d(TAG,"Dpi = "+displayMetrics.densityDpi);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ll.scrollTo(90,90);
+                Log.d(TAG,"ScrollX"+ll.getScrollX());
+                Log.d(TAG,"ScrollY"+ll.getScrollY());
+                if (flag){
+                    ll.scrollTo(100,0);
+                    flag = false;
+                    Log.d(TAG,"ScrollX"+ll.getScrollX());
+                    Log.d(TAG,"ScrollY"+ll.getScrollY());
+                }else {
+                    ll.scrollTo(-100,0);
+                    Log.d(TAG,"ScrollX"+ll.getScrollX());
+                    Log.d(TAG,"ScrollY"+ll.getScrollY());
+                }
             }
         });
         btn_1.setOnClickListener(new View.OnClickListener() {
@@ -42,9 +56,19 @@ public class MainActivity extends AppCompatActivity {
                 ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) btn_1.getLayoutParams();
                 layoutParams.leftMargin += 100;
                 layoutParams.topMargin += 100;
+                btn_1.invalidate();
                 btn_1.requestLayout();
             }
         });
+
+
+        findViewById(R.id.btn_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SecondActivity.class));
+            }
+        });
+
     }
 
     @Override
