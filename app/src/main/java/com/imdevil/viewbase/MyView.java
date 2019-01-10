@@ -18,8 +18,8 @@ public class MyView extends View {
 
     public MyView(Context context) {
         super(context);
-        //mLastX = getX();
-        //mLastY = getY();
+        mLastX = getX();
+        mLastY = getY();
 
     }
 
@@ -47,20 +47,20 @@ public class MyView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        x = event.getRawX();
+        y = event.getRawY();
+        Log.d("ACTION_DOWN","mLastX = "+mLastX);
+        Log.d("ACTION_DOWN","translationX = "+getTranslationX());
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                mLastX = event.getRawX();
-                mLastY = event.getRawY();
-                Log.d("My View","mLastX = "+mLastX);
                 break;
             case MotionEvent.ACTION_MOVE:
-                x = event.getRawX();
-                y = event.getRawY();
-                Log.d("My View","x = "+x);
                 float deltaX = x - mLastX;
+                Log.d("ACTION_MOVE","deltaX = "+deltaX);
                 float deltaY = y - mLastY;
                 float translationX = getTranslationX() + deltaX;
                 float translationY = getTranslationY() + deltaY;
+                Log.d("translationX","translationX = "+translationX);
                 setTranslationX(translationX);
                 setTranslationY(translationY);
 
@@ -70,6 +70,8 @@ public class MyView extends View {
             default:
                 break;
         }
+        mLastX = x;
+        mLastY = y;
         return true;
     }
 
