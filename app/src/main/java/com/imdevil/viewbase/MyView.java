@@ -56,8 +56,9 @@ public class MyView extends View {
         //paint.setStrokeWidth(10f);
         int height = getHeight();
         int width = getWidth();
-        canvas.drawCircle(0,0,30, paint);
+        canvas.drawCircle(width/2,height/2,width/2, paint);
     }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -66,11 +67,11 @@ public class MyView extends View {
         Log.d("My View","mLastX = "+mLastX);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                Log.d("Fuck","My View");
+                Log.d("My View","ACTION_DOWN");
                 break;
             case MotionEvent.ACTION_MOVE:
 
-                Log.d("My View","x = "+x);
+                Log.d("My View","ACTION_MOVE");
                 float deltaX = x - mLastX;
                 float deltaY = y - mLastY;
                 float translationX = getTranslationX() + deltaX;
