@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Scroller;
 
 public class MyView extends View {
 
@@ -15,24 +16,35 @@ public class MyView extends View {
     private float mLastY;
     private float x;
     private float y;
+    private Scroller scroller;
 
     public MyView(Context context) {
         super(context);
         mLastX = getX();
         mLastY = getY();
+        scroller = new Scroller(context);
 
     }
 
     public MyView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        scroller = new Scroller(context);
     }
 
     public MyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        scroller = new Scroller(context);
     }
 
     public MyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        scroller = new Scroller(context);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
     }
 
     @Override
@@ -41,29 +53,31 @@ public class MyView extends View {
         Paint paint = new Paint();
         paint.setColor(getResources().getColor(R.color.colorAccent));
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setStrokeWidth(10f);
-        canvas.drawCircle(0, 0, 50, paint);
+        //paint.setStrokeWidth(10f);
+        int height = getHeight();
+        int width = getWidth();
+        canvas.drawCircle(0,0,30, paint);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         x = event.getRawX();
         y = event.getRawY();
-        Log.d("ACTION_DOWN","mLastX = "+mLastX);
-        Log.d("ACTION_DOWN","translationX = "+getTranslationX());
+        Log.d("My View","mLastX = "+mLastX);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                Log.d("Fuck","My View");
                 break;
             case MotionEvent.ACTION_MOVE:
+
+                Log.d("My View","x = "+x);
                 float deltaX = x - mLastX;
-                Log.d("ACTION_MOVE","deltaX = "+deltaX);
                 float deltaY = y - mLastY;
                 float translationX = getTranslationX() + deltaX;
+                Log.d("translationX","translationX ="+translationX);
                 float translationY = getTranslationY() + deltaY;
-                Log.d("translationX","translationX = "+translationX);
                 setTranslationX(translationX);
                 setTranslationY(translationY);
-
                 break;
             case MotionEvent.ACTION_UP:
                 break;
@@ -75,4 +89,20 @@ public class MyView extends View {
         return true;
     }
 
+    @Override
+    public void computeScroll() {
+        if (scroller.computeScrollOffset()){
+            scrollTo(scroller.getCurrX(),scroller.getCurrY());
+            postInvalidate();
+        }
+    }
+
+    public void  smoothScrollTo(int destX,int destY){
+        int scrollX = getScrollX();
+        int deltaX = destX - scrollX;
+        int scrollY = getScrollY();
+        int deltaY = destY - scrollY;
+        scroller.startScroll(scrollX,scrollY,deltaX,deltaY,1000);
+        invalidate();
+    }
 }
