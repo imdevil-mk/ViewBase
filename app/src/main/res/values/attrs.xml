@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomView">
+        <attr name="circle_color" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="WheelPicker">
+        <attr name="halfVisibleItemCount"/>
+        <attr name="itemTextSize"/>
+        <attr name="itemMaximumWidthText"/>
+        <attr name="itemTextColor"/>
+        <attr name="textGradual"/>
+        <attr name="selectedTextColor"/>
+        <attr name="selectedTextSize"/>
+        <attr name="currentItemPosition"/>
+        <attr name="itemWidthSpace"/>
+        <attr name="itemHeightSpace"/>
+        <attr name="zoomInSelectedItem"/>
+        <attr name="wheelCyclic"/>
+        <attr name="wheelCurtain"/>
+        <attr name="wheelCurtainColor"/>
+        <attr name="wheelCurtainBorder" />
+        <attr name="wheelCurtainBorderColor"/>
+        <attr name="indicatorText"/>
+        <attr name="indicatorTextSize"/>
+        <attr name="indicatorTextColor"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="Picker">
+        <attr name="textColor" format="color"/>
+        <attr name="selectedTextColor" format="color"/>
+        <attr name="textSize" format="integer"/>
+        <attr name="visibleTextCount" format="integer"/>
+    </declare-styleable>
+
+
+</resources>

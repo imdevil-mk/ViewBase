@@ -8,6 +8,8 @@
     android:background="@color/lll">
 
     <com.imdevil.viewbase.MyView
+        android:clickable="true"
+        android:id="@+id/third_my_view"
         android:layout_width="200dp"
         android:layout_height="200dp" />
 

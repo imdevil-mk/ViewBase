@@ -4,12 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 public class SecondActivity extends AppCompatActivity {
 
     MyView myView;
     Button scrollBy;
+    MyLinearLayout ml;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +26,6 @@ public class SecondActivity extends AppCompatActivity {
                 myView.smoothScrollTo(-100,-100);
             }
         });
-
 
     }
 }

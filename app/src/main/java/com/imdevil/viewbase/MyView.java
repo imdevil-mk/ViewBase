@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
@@ -17,6 +18,7 @@ public class MyView extends View {
     private float x;
     private float y;
     private Scroller scroller;
+    private GestureDetector mGestureDetector;
 
     public MyView(Context context) {
         super(context);
@@ -87,7 +89,7 @@ public class MyView extends View {
         }
         mLastX = x;
         mLastY = y;
-        return true;
+        return super.onTouchEvent(event);
     }
 
     @Override
