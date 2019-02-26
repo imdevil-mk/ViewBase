@@ -20,8 +20,10 @@ public class PickerActivity extends AppCompatActivity {
 
         pi = findViewById(R.id.pi);
 
-        for (int i = 0;i < 20;i++){
-            dataList.add("ABCDE");
+        int i = 0;
+        while(i<30){
+            dataList.add("0000000"+i);
+            i++;
         }
 
         pi.setDataList(dataList);

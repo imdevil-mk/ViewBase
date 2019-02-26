@@ -19,7 +19,8 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".ThirdActivity" />
         <activity android:name=".CustomViewActivity" />
-        <activity android:name=".PickerActivity"></activity>
+        <activity android:name=".PickerActivity" />
+        <activity android:name=".TextActivity"></activity>
     </application>
 
 </manifest>
